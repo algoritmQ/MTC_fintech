@@ -1,0 +1,534 @@
+openapi: 3.0.0
+info:
+  title: Сервис администрирования партнеров
+  version: 0.0.1
+servers:
+  - url: http://localhost:3000/api/v1/
+    description: Dev server
+paths:
+  /partners:
+    get:
+      summary: Получение списка партнеров
+      tags:
+        - Partners
+      operationId: getPartnersById
+      responses:
+        '200':
+          description: записи успешно получены
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Partners"
+        'default':
+          description: произошла ошибка
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      summary: Добавление партнера
+      operationId: createPartner
+      tags:
+        - Partner
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Partner"
+      responses:
+        '200':
+          description: запись успешно создана
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Partner"
+        '400':
+          description: некорректные данные
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+        'default':
+          description: произошла ошибка
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        
+  /partners/{id_Partner}:
+    get:
+      summary: Получение партера по id
+      tags:
+        - Partner
+      operationId: getPartnerById
+      parameters:
+        - name: id_Partner
+          in: path
+          required: true
+          description: id партнера
+          schema:
+            type: string
+          example: 1
+      responses:
+        '200':
+          description: запись успешно получена
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Partner"
+        'default':
+          description: произошла ошибка
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    put:
+      summary: Редактирование партнера
+      tags:
+        - Partner
+      operationId: updatePartnerById
+      parameters:
+        - name: id_Partner
+          in: path
+          required: true
+          description: id партнера
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Partner"
+      responses:
+        '200':
+          description: запись успешно обновлена
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Partner"
+        '400':
+          description: некорректные данные
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+        'default':
+          description: произошла ошибка
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"      
+    delete:
+      summary: Удаление партера по id
+      tags:
+        - Partner
+      operationId: deletePartnerById
+      parameters:
+        - name: id_Partner
+          in: path
+          required: true
+          description: id партнера
+          schema:
+            type: string
+      responses:
+        '200':
+          description: запись успешно удалена
+          content:
+            application/json:
+              {}
+        'default':
+          description: произошла ошибка
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"    
+  
+  /organizations:
+    get:
+      summary: Получение списка организаций
+      tags:
+        - Organizations
+      operationId: getOrganizationsById
+      responses:
+        '200':
+          description: записи успешно получены
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Organizations"
+        'default':
+          description: произошла ошибка
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      summary: Добавление организации
+      operationId: createorganization
+      tags:
+        - Organization
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Organizations"
+      responses:
+        '200':
+          description: запись успешно создана
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Organization"
+        '400':
+          description: некорректные данные
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+        'default':
+          description: произошла ошибка
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        
+  /organizations/{id_Organization}:
+    get:
+      summary: Получение организации по id
+      tags:
+        - Organization
+      operationId: getOrganizationById
+      parameters:
+        - name: id_Organization
+          in: path
+          required: true
+          description: id организации
+          schema:
+            type: string
+          example: 1
+      responses:
+        '200':
+          description: запись успешно получена
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Organization"
+        'default':
+          description: произошла ошибка
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    put:
+      summary: Редактирование организации
+      tags:
+        - Organization
+      operationId: updateOrganizationById
+      parameters:
+        - name: id_Organization
+          in: path
+          required: true
+          description: id организации
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Organization"
+      responses:
+        '200':
+          description: запись успешно обновлена
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Organization"
+        '400':
+          description: некорректные данные
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+        'default':
+          description: произошла ошибка
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"      
+    delete:
+      summary: Удаление организации по id
+      tags:
+        - Organization
+      operationId: deleteOrganizationById
+      parameters:
+        - name: id_Organization
+          in: path
+          required: true
+          description: id организации
+          schema:
+            type: string
+      responses:
+        '200':
+          description: запись успешно удалена
+          content:
+            application/json:
+              {}
+        'default':
+          description: произошла ошибка
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"   
+
+  /partner_organizations:
+    get:
+      summary: Получение списка партнеров и связанных организаций
+      tags:
+        - Partner_organizations
+      operationId: getPartnerOrganizationsById
+      responses:
+        '200':
+          description: записи успешно получены
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Partner_Organizations"
+        'default':
+          description: произошла ошибка
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      summary: Добавление связи партнер-организация
+      operationId: createPartnerOrganization
+      tags:
+        - Partner_organization
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Partner_Organization"
+      responses:
+        '200':
+          description: запись успешно создана
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Partner_Organization"
+        '400':
+          description: некорректные данные
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+        'default':
+          description: произошла ошибка
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /partner_organizations/{id_Partner_Organization}:
+    get:
+      summary: Получение партера и связанной организации по id
+      tags:
+        - Partner_organization
+      operationId: getPartnerOrganizationById
+      parameters:
+        - name: id_Partner_Organization
+          in: path
+          required: true
+          description: id партнер-организации
+          schema:
+            type: string
+          example: 1
+      responses:
+        '200':
+          description: запись успешно получена
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Partner_Organization"
+        'default':
+          description: произошла ошибка
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    put:
+      summary: Редактирование связи партнер-организация
+      tags:
+        - Partner_organization
+      operationId: updatePartnerOrganizationById
+      parameters:
+        - name: id_Partner_Organization
+          in: path
+          required: true
+          description: id партнер-организации
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Partner_Organization"
+      responses:
+        '200':
+          description: запись успешно обновлена
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Partner_Organization"
+        '400':
+          description: некорректные данные
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+        'default':
+          description: произошла ошибка
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"      
+    delete:
+      summary: Удаление связи партнер-организации по id
+      tags:
+        - Partner_organization
+      operationId: deletePartnerOrganizationById
+      parameters:
+        - name: id_Partner_Organization
+          in: path
+          required: true
+          description: id партнер-организации
+          schema:
+            type: string
+      responses:
+        '200':
+          description: запись успешно удалена
+          content:
+            application/json:
+              {}
+        'default':
+          description: произошла ошибка
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    
+components:
+  schemas:
+    Partner:
+      type: object
+      required:
+        - phone_number
+        - last_name
+        - first_name
+        - patronymic
+        - email
+        - cooperate
+      properties:
+        id_Partner:
+          type: integer
+          example: 1
+        phone_number:
+          type: string
+          example: 89627891513
+        last_name:
+          type: string
+          example: Antipov
+        first_name:
+          type: string
+          example: Ilya
+        patronymic:
+          type: string
+          example: Pavlovich
+        email:
+          type: string
+          example: antipov.I.P@bk.mg
+        cooperate:
+          type: boolean
+          example: true
+        create_data:
+          type: string
+          format: 2022-07-01T15:00:00+01
+    Partners:
+      type: array
+      items:
+        $ref: "#/components/schemas/Partner"
+    Organization:
+      type: object
+      required:
+        - name_organization
+      properties:
+        id_Organization:
+          type: integer
+          example: 1
+        name_organization:
+          type: string
+          example: Организация_1
+        create_data:
+          type: string
+          format: 2022-07-01T15:00:00+01
+    Organizations:
+      type: array
+      items:
+        $ref: "#/components/schemas/Organization"
+    Partner_Organization:
+      type: object
+      required:
+        - Partner
+        - Organization
+      properties:
+        id_Partner_Organization:
+          type: integer
+          example: 1
+        Partner:
+          type: integer
+          example: 3
+        Organization:
+          type: integer
+          example: 3          
+        create_data:
+          type: string
+          format: 2022-07-01T15:00:00+01
+    Partner_Organizations:
+      type: array
+      items:
+        $ref: "#/components/schemas/Partner_Organization"
+    
+    Error:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        
+        
+        
+        
+        
+        
